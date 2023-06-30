@@ -31,12 +31,12 @@ class EmployeeView(APIView):
                 departments = Department.objects.filter(name=department_name)
                 employees = [employee.get_response for department in departments for employee in department.employees.all()]
             else:
-                employe_queryset = Employee.objects.all()
+                employee_queryset = Employee.objects.all()
                 if employee_name:
-                    employe_queryset = employe_queryset.filter(name__icontains=employee_name)
+                    employee_queryset = employee_queryset.filter(name__icontains=employee_name)
                 elif employee_id:
-                    employe_queryset = employe_queryset.filter(id=employee_id)
-                employees = [employee.get_response for employee in employe_queryset]
+                    employee_queryset = employee_queryset.filter(id=employee_id)
+                employees = [employee.get_response for employee in employee_queryset]
             self.ctx = {"msg": "Employee list Loaded Sucessfully", "data":employees}
             self.status= status.HTTP_200_OK
         
