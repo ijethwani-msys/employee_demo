@@ -8,7 +8,7 @@ class Employee(models.Model):
     joined_date = models.DateField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.pk + ":" + self.name
+        return f"{str(self.pk)}:{str(self.name)}"
     
     class Meta:
         ordering = ["-joined_date"]
@@ -33,7 +33,7 @@ class Department(models.Model):
     updated_on = models.DateTimeField(auto_now=True, verbose_name="Updated On")
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.name)
 
     class Meta:
         ordering = ["-updated_on"]
