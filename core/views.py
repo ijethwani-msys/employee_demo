@@ -8,10 +8,11 @@ class EmployeeView(APIView):
     def get(self,request):
         self.data = request.GET
         if "action" in self.data:
-            action = self.data.get("action",1)
+            action = int(self.data.get("action", 1))
             action_mapper = {
                 1: self.get_employees,
             }
+
             action_status = action_mapper.get(action, lambda:"Invalid")()
             if action_status == "Invalid":
                 self.ctx = {"mag":"Action is not valid"}
@@ -47,7 +48,7 @@ class EmployeeView(APIView):
     def post(self, request):
         self.data = request.data
         if "action" in self.data:
-            action = self.data.get("action",1)
+            action = int(self.data.get("action",1))
             action_mapper = {
                 1: self.add_employee,
                 2: self.update_employee,
@@ -134,7 +135,7 @@ class DepartmentView(APIView):
     def get(self,request):
         self.data = request.GET
         if "action" in self.data:
-            action = self.data.get("action",1)
+            action = int(self.data.get("action",1))
             action_mapper = {
                 1: self.get_departments,
             }
@@ -168,7 +169,7 @@ class DepartmentView(APIView):
     def post(self, request):
         self.data = request.data
         if "action" in self.data:
-            action = self.data.get("action",1)
+            action = int(self.data.get("action",1))
             action_mapper = {
                 1: self.add_department,
                 2: self.update_department,
